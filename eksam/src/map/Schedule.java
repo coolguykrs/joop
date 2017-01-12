@@ -4,7 +4,6 @@ import trainstations.TrainStation;
 import traintracks.TrainTrack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,13 +15,10 @@ public class Schedule {
     private int[] rideTimes;
     private List<TrainTrack> trainTracks = new ArrayList<>();
 
-    public Schedule(Storage storage, int[] indexes, int... rideTimes) {
-        for (int i: indexes) {
-            trainStations.add(storage.getTrainStations().get(i));
-        }
-        for (int i = 0; i < indexes.length - 1; i++) {
-            trainTracks.add(storage.getTrainTracks().get(indexes[i]));
-        }
+    // rideTimes should be some objects instead of plain primitive ride times
+    public Schedule(List<TrainStation> trainStations, List<TrainTrack> trainTracks, int... rideTimes) {
+        this.trainStations = trainStations;
+        this.trainTracks = trainTracks;
         this.rideTimes = rideTimes;
     }
 
